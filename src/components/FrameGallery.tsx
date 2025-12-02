@@ -44,7 +44,7 @@ export function FrameGallery({
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-foreground">Extracted Library</h2>
+          <h2 className="text-2xl font-bold text-foreground">Extracted Frames</h2>
           <p className="text-muted-foreground">
             {filteredFrames.length} {filteredFrames.length === 1 ? 'frame' : 'frames'}
             {' • '}

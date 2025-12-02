@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Filter, Library, RotateCcw, Sparkles } from 'lucide-react';
+import { Filter, Library, RotateCcw, Sparkles, Play } from 'lucide-react';
 import { formatDuration } from '@/services/videoProcessor';
 
 interface ControlBarProps {
@@ -18,12 +18,14 @@ interface ControlBarProps {
   scanInterval: number;
   showFilters: boolean;
   viewKeepersOnly: boolean;
+  showGalleryView?: boolean;
   onScanRangeChange: (range: ScanRange) => void;
   onScanIntervalChange: (interval: number) => void;
   onStartScan: () => void;
   onNewScan: () => void;
   onToggleFilters: () => void;
   onToggleKeepersView: () => void;
+  onToggleGalleryView?: () => void;
 }
 
 export function ControlBar({
@@ -34,12 +36,14 @@ export function ControlBar({
   scanInterval,
   showFilters,
   viewKeepersOnly,
+  showGalleryView = true,
   onScanRangeChange,
   onScanIntervalChange,
   onStartScan,
   onNewScan,
   onToggleFilters,
   onToggleKeepersView,
+  onToggleGalleryView,
 }: ControlBarProps) {
   return (
     <div className="bg-card/80 backdrop-blur-md border-b border-border shadow-lg">
@@ -123,17 +127,28 @@ export function ControlBar({
                   Filters
                 </Button>
 
-                <Button
-                  onClick={onToggleKeepersView}
-                  variant="outline"
-                  className={`${
-                    viewKeepersOnly ? 'bg-primary/20 border-primary' : 'border-border bg-background/50 hover:bg-background'
-                  }`}
-                  disabled={isScanning}
-                >
-                  <Library className="w-4 h-4 mr-2" />
-                  View Library
-                </Button>
+                {onToggleGalleryView && (
+                  <Button
+                    onClick={onToggleGalleryView}
+                    variant="outline"
+                    className={`${
+                      !showGalleryView ? 'bg-primary/20 border-primary' : 'border-border bg-background/50 hover:bg-background'
+                    }`}
+                    disabled={isScanning}
+                  >
+                    {showGalleryView ? (
+                      <>
+                        <Play className="w-4 h-4 mr-2" />
+                        View Video Preview
+                      </>
+                    ) : (
+                      <>
+                        <Library className="w-4 h-4 mr-2" />
+                        View Extracted Frames
+                      </>
+                    )}
+                  </Button>
+                )}
               </div>
             </>
           )}

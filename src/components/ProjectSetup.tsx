@@ -54,7 +54,7 @@ export function ProjectSetup({ onProjectCreated }: ProjectSetupProps) {
           <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
             FramePerfect AI
           </h1>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-primary-foreground/90 text-lg">
             Extract, analyze, and enhance high-quality photos from your videos
           </p>
         </div>
@@ -62,7 +62,7 @@ export function ProjectSetup({ onProjectCreated }: ProjectSetupProps) {
         <div className="bg-gray-800/50 backdrop-blur-md border border-gray-700 rounded-3xl p-8 shadow-2xl shadow-purple-500/10">
           <div className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="project-name" className="text-foreground text-base">
+              <Label htmlFor="project-name" className="text-primary-foreground text-base font-semibold">
                 Project Name <span className="text-destructive">*</span>
               </Label>
               <Input
@@ -71,12 +71,12 @@ export function ProjectSetup({ onProjectCreated }: ProjectSetupProps) {
                 placeholder="Required: Enter your project name"
                 value={projectName}
                 onChange={(e) => setProjectName(e.target.value)}
-                className="bg-gray-900/50 border-gray-700 text-foreground placeholder:text-destructive h-12 text-base"
+                className="bg-gray-900/50 border-gray-700 text-primary-foreground placeholder:text-destructive/80 h-12 text-base"
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-foreground text-base">Video File</Label>
+              <Label className="text-primary-foreground text-base font-semibold">Video File</Label>
               <div
                 className={`relative border-2 border-dashed rounded-2xl p-12 transition-all cursor-pointer ${
                   dragActive
@@ -101,24 +101,24 @@ export function ProjectSetup({ onProjectCreated }: ProjectSetupProps) {
                 <div className="flex flex-col items-center justify-center text-center">
                   <Upload
                     className={`w-16 h-16 mb-4 ${
-                      selectedFile ? 'text-green-400' : 'text-muted-foreground'
+                      selectedFile ? 'text-green-400' : 'text-primary-foreground/60'
                     }`}
                   />
                   {selectedFile ? (
                     <>
-                      <p className="text-foreground font-medium mb-1">
+                      <p className="text-primary-foreground font-medium mb-1">
                         {selectedFile.name}
                       </p>
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-primary-foreground/70 text-sm">
                         {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB
                       </p>
                     </>
                   ) : (
                     <>
-                      <p className="text-foreground font-medium mb-1">
+                      <p className="text-primary-foreground font-medium mb-1">
                         Drop your video here or click to browse
                       </p>
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-primary-foreground/70 text-sm">
                         Supports MP4, MOV, AVI, and other video formats
                       </p>
                     </>

@@ -9,7 +9,7 @@ import { QuickPreviewStrip } from './QuickPreviewStrip';
 import { AIAgentReadyPanel } from './AIAgentReadyPanel';
 import { PlaceholderFrameGrid } from './PlaceholderFrameGrid';
 import { Button } from '@/components/ui/button';
-import { Download } from 'lucide-react';
+import { Download, ArrowLeft } from 'lucide-react';
 import { toast } from 'sonner';
 import { exportLibrary } from '@/services/exportService';
 
@@ -54,6 +54,7 @@ export function MainWorkspace({
   const [viewKeepersOnly, setViewKeepersOnly] = useState(false);
   const [activeTab, setActiveTab] = useState<'all' | 'originals' | 'enhanced'>('all');
   const [selectedFrame, setSelectedFrame] = useState<Frame | null>(null);
+  const [showGalleryView, setShowGalleryView] = useState(true);
 
   const isScanned = frames.length > 0 && pipelineStatus.stage === 'complete';
   const isScanning = pipelineStatus.stage !== 'idle' && pipelineStatus.stage !== 'complete';
@@ -102,22 +103,34 @@ export function MainWorkspace({
         scanInterval={scanInterval}
         showFilters={showFilters}
         viewKeepersOnly={viewKeepersOnly}
+        showGalleryView={showGalleryView}
         onScanRangeChange={onScanRangeChange}
         onScanIntervalChange={onScanIntervalChange}
         onStartScan={onStartScan}
         onNewScan={onNewScan}
         onToggleFilters={() => setShowFilters(!showFilters)}
         onToggleKeepersView={() => setViewKeepersOnly(!viewKeepersOnly)}
+        onToggleGalleryView={() => setShowGalleryView(!showGalleryView)}
       />
 
       <div className="container mx-auto px-6 py-8 space-y-8">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">{projectName}</h1>
-            <p className="text-muted-foreground">
-              {frames.length} frames extracted • {keeperCount} keepers
-            </p>
+          <div className="flex items-center gap-3">
+            <Button
+              onClick={onNewScan}
+              variant="outline"
+              size="icon"
+              className="border-border bg-background/50 hover:bg-background"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </Button>
+            <div>
+              <h1 className="text-3xl font-bold text-foreground">{projectName}</h1>
+              <p className="text-muted-foreground">
+                {frames.length} frames extracted • {keeperCount} keepers
+              </p>
+            </div>
           </div>
 
           {keeperCount > 0 && (
@@ -163,18 +176,37 @@ export function MainWorkspace({
           </div>
         )}
 
-        {/* Gallery */}
-        {frames.length > 0 && (
-          <FrameGallery
-            frames={displayFrames}
-            videoDuration={videoDuration}
-            scanRange={scanRange}
-            activeTab={activeTab}
-            onTabChange={setActiveTab}
-            onFrameSelect={setSelectedFrame}
-            onFrameDelete={onFrameDelete}
-            onToggleKeeper={onToggleKeeper}
-          />
+        {/* Video Preview or Gallery based on toggle */}
+        {frames.length > 0 && !isScanning && (
+          <>
+            {!showGalleryView ? (
+              <div className="space-y-8">
+                <VideoPreviewHero 
+                  videoFile={videoFile}
+                  videoDuration={videoDuration}
+                  scanInterval={scanInterval}
+                />
+                <QuickPreviewStrip 
+                  videoFile={videoFile}
+                  videoDuration={videoDuration}
+                />
+                <AIAgentReadyPanel 
+                  estimatedFrames={estimatedFrames}
+                />
+              </div>
+            ) : (
+              <FrameGallery
+                frames={displayFrames}
+                videoDuration={videoDuration}
+                scanRange={scanRange}
+                activeTab={activeTab}
+                onTabChange={setActiveTab}
+                onFrameSelect={setSelectedFrame}
+                onFrameDelete={onFrameDelete}
+                onToggleKeeper={onToggleKeeper}
+              />
+            )}
+          </>
         )}
 
         {/* Detail Modal */}

@@ -53,7 +53,7 @@ export function ProjectSetup({ onProjectCreated }: ProjectSetupProps) {
       <div className="w-full max-w-2xl">
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent mb-4">
-            FramePerfect AI
+            Freeze Frame AI
           </h1>
           <p className="text-foreground/90 text-lg">
             Extract, analyze, and enhance high-quality photos from your videos

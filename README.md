@@ -1,15 +1,15 @@
 
 ## Project URL: https://lovable.dev/projects/66d87ddd-833b-49a9-8492-addf57a2cb2b
 
-# X-perfect-frame-insight
+# Freeze Frame
 
-⚠️ **This repository is archived.** See [PerfectFrame-AI](https://github.com/Nymfarious/PerfectFrame-AI) for the active version.
+AI-powered video frame extraction and enhancement tool (v0.99).
 
 ---
 
-## What This Was
+## About
 
-Frame Perfect v0.99 - An AI-powered video frame extraction and enhancement tool.
+Freeze Frame is an AI-powered video frame extraction and enhancement tool that helps you find the perfect moments in your videos.
 
 ### Features (at time of archival)
 

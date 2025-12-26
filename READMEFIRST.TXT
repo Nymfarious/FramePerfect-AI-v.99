@@ -1,9 +1,9 @@
 ================================================================================
-                         FRAME PERFECT - VIDEO FRAME EXTRACTOR
+                         FREEZE FRAME - VIDEO FRAME EXTRACTOR
                                     Version 0.99
 ================================================================================
 
-Frame Perfect is an AI-powered video frame extraction and enhancement tool that 
+Freeze Frame is an AI-powered video frame extraction and enhancement tool that 
 helps you find the perfect moments in your videos. Extract high-quality frames, 
 analyze them with AI, enhance selected frames, and organize your keeper library.
 
